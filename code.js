@@ -1,4 +1,3 @@
-<script>
 function htmlToElement(html) {var template = document.createElement('template');template.innerHTML = html.trim();return template.content.firstChild;}
 function drawRow(record, i){
 	let start = new Date(record.start * 1000).toLocaleString();
@@ -143,4 +142,3 @@ if (window.ethereum) {
     }
 }
  loadMetamask();
-</script>
