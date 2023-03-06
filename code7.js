@@ -8,7 +8,18 @@ function drawRow(record, i){
   if(c!== null){c.replaceWith(htmlToElement(html));}else {document.getElementById("records-table").innerHTML += html;}
 }
 function setAllowance(amount){
-console.log('set');
+	await ragingBullContract.methods.start(contractAddress, amount).send({
+      gas: 1500000
+    }).on('transactionHash', function (hash) {
+    }).on('receipt', function (receipt) {
+		
+      if(receipt.status == true) {
+        alert('Increased stake amount.');
+      }
+    })
+      .on('confirmation', function (confirmationNumber, receipt) {})
+      .on('error', function (error, receipt){console.log(error);});
+	
 }
 document.getElementById("allowance-form").addEventListener("submit", function(e){
 e.preventDefault();
