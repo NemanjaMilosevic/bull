@@ -118,19 +118,20 @@ if (window.ethereum) {
           alert('User doesn\'t have any MetaMask accounts!');
           return;
         }
-        
+        web3.eth.defaultAccount = accounts[0];
+	web3.eth.personal.unlockAccount(web3.eth.defaultAccount)
+
         contractAddress = '0xA243Ac49efd894B869372A8DF39F7770784955dA';
 
         contract = new web3.eth.Contract(abi, contractAddress, {
           from: accounts[0],
         });
-        
         ragingBullContract = new web3.eth.Contract(ragingBullAbi, '0xC6B9752614f29499a0D2f276558cef3f593e6E2B', {
           from: accounts[0],
         });
         await readAllowance();
 
-				ethAccount = accounts[0];
+	ethAccount = accounts[0];
         let r = await getLedgerData();
         globalRecords = r;
         await drawRows(r);
