@@ -101,8 +101,9 @@ async function getLedgerData(){
 }
 
 async function readAllowance(){
-    const allowance  = await ragingBullContract.methods.allowance(ethAccount).call();
+    const allowance  = await ragingBullContract.methods.allowance(ethAccount, contract).call();
     console.log(allowance);
+	document.getElementById('current-allowance').innerHTML = 'Current allowance: ' +allowance;
 }
 async function loadMetamask(){
 if (window.ethereum) {
