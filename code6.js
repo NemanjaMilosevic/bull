@@ -118,7 +118,8 @@ if (window.ethereum) {
           alert('User doesn\'t have any MetaMask accounts!');
           return;
         }
-      
+      	ethAccount = accounts[0];
+
 
         contractAddress = '0xA243Ac49efd894B869372A8DF39F7770784955dA';
 
@@ -128,12 +129,11 @@ if (window.ethereum) {
         
          
         
-        ragingBullContract = new web3.eth.Contract(ragingBullAbi, web3.utils.toChecksumAddress('0xC6B9752614f29499a0D2f276558cef3f593e6E2B'), {
+        ragingBullContract = new web3.eth.Contract(ragingBullAbi, '0xC6B9752614f29499a0D2f276558cef3f593e6E2B', {
           from: accounts[0],
         });
         await readAllowance();
 
-	ethAccount = accounts[0];
         let r = await getLedgerData();
         globalRecords = r;
         await drawRows(r);
